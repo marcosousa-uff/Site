@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+
+    <title>Loja de Eletrodomesticos</title>
+  </head>
+  <body>
+	<div class="container">
+	<p></p>
+	<!-- Conteúdo aqui -->
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<ul class="navbar-nav">
+			 <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+			 <li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
+			 <li class="nav-item"><a class="nav-link" href="cadastrar.html">Cadastrar</a></li>
+			 <li class="nav-item"><a class="nav-link" href="ListarProdutos">Produtos</a></li>
+		</ul>
+	</nav>
+	</div>
+	
+	<div class="container">
+		<form onsubmit="return TestaCPF();" method="POST" action="ChecarUsuarios">
+		<table>
+		<tr>
+		<td>CPF: </td>
+		<td>
+			<input class="form-control" 
+			name="cpf"
+			value="249.252.810-38" data-mask="000.000.000-00"  maxlength="14">
+		</td>
+		<td>Senha: </td>
+		<td>
+			<input type="password" 
+			name="senha" id="senha"
+			placeholder="Senha">
+		</td>
+		</tr>
+		</table>
+		<input type="submit" value="Submit">
+		</form>
+	</div>
+      <script type="text/javascript">
+	$(document).ready(function(){
+		$('#cpf').mask('999.999.999-99', {reverse: true});
+	});
+      </script>
+	
+<script>
+function TestaCPF() {
+
+    var auxCPF = document.getElementById("cpf").value
+	resultado = auxCPF.replaceAll(".", "");
+	var strCPF = resultado.replaceAll("-", "");
+    var Soma;
+    var Resto;
+	var correto = true;
+    Soma = 0;
+	
+  if (strCPF == "00000000000") {correto = false;};
+
+  for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+  Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) { Resto = 0;}
+    if (Resto != parseInt(strCPF.substring(9, 10)) ) {correto = false;}
+
+  Soma = 0;
+    for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11) ) ) {correto = false;}
+    
+	
+	if (correto == false){alert("CPF incorreto");}
+	
+	return correto;
+}
+</script>
+	
+	
+	
+	
+    
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
