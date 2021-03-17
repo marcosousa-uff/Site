@@ -1,0 +1,46 @@
+Requisitos Não Funcionais Gerais
+
+	RNF1: Sistema deverá ser responsivo sendo obrigatório o uso do Bootstrap
+
+	RNF2: Todas as bibliotecas, scripts, imagens, etc., necessários para o
+	funcionamento devem estar disponíveis localmente;
+
+
+Requisitos Funcionais Gerais
+
+	Obs. Sempre que o termo cadastrar (e seus sinônimos) for empregado fica
+	compreendido um conjunto de tarefas a serem implementas na aplicação são:
+	Listar ou Consultar, incluir, alterar e excluir - CRUD.
+
+Casos de Usos - Vendedores
+
+	RF1: O vendedor acessa a área privada da aplicação (fazer login).
+
+	RF2: O vendedor obtém os dados do cliente e cadastra-o no sistema.
+
+	RF3: O vendedor realiza a venda para o cliente de um produto disponível e
+	cadastra os dados relativos à venda no sistema.
+
+
+Casos de Usos - Compradores
+
+	RF4: O comprador acessa a área privada da aplicação (fazer login).
+	RF5: O comprador obtém os dados do fornecedor e cadastra-o no sistema.
+	RF6: O comprador cadastra as categorias dos produtos.
+	RF7: O comprador realiza a compra do produto e cadastra os dados relativos à
+	compra no sistema.
+	RF8: O comprador libera ou não um produto para venda.
+
+Casos de Usos - Administradores
+	RF9: O administrador acessa a área privada da aplicação (fazer login).
+	RF10: O administrador obtém os dados do vendedor e cadastra-o no sistema.
+	RF11: O administrador obtém os dados do comprador e cadastra-o no sistema.
+	RF12: O administrador obtém os dados do administrador e cadastra-o no sistema.
+	RF13: O administrador gera relatório (na tela) sobre o estoque dos produtos.
+	RF14: O administrador gera relatório (na tela) sobre as vendas dos produtos e total
+	vendido diariamente.
+	RF15: O administrador libera ou não um produto para venda.
+Casos de Usos - Clientes
+	RF16: Os clientes visualizam os produtos disponíveis para a compra. Um produto
+	disponível é aquele que possui quantidade disponível > 0 e está liberado para
+	venda.
