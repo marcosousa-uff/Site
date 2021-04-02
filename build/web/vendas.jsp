@@ -4,6 +4,7 @@
     Author     : marco
 --%>
 
+<%@page import="model.UsuariosDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="aplicacao.Vendas"%>
 <%@page import="model.VendasDAO"%>
@@ -19,13 +20,24 @@
         <title>Loja de Eletrodomesticos</title>
     </head>
     <body>
+        <%
+            
+          HttpSession ses = request.getSession();
+          int id = (int) (ses.getAttribute("idFuncionario"));
+          boolean logado = true;
+          String link = "AreaRestrita?id="+id+"&logado="+logado;
+            
+            
+        %>    
         <div class="container">
 	<p></p>
 	<!-- Conteúdo aqui -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<ul class="navbar-nav">
-			 <li class="nav-item"><a class="nav-link" href="login.html">Vender</a></li>
-			 <li class="nav-item active"><a class="nav-link" href="login.html">Vendas</a></li>
+			 <li class="nav-item"><a class="nav-link" href=<%=link%>>Area Restrita</a></li>
+			 <li class="nav-item active"><a class="nav-link" href="vendas.jsp">Vendas</a></li>
+                         <li class="nav-item"><a class="nav-link" href="cadastrar.jsp">Cadastrar</a></li>
+                         <li class="nav-item"><a class="nav-link" href="iniciarVenda.jsp">Vender</a></li> 
 			 <li class="nav-item"><a class="nav-link" href="index.html">Sair</a></li>
 		</ul>
 	</nav>
