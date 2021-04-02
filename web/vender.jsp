@@ -41,6 +41,7 @@
                             for (int i = 0; i < ListaProdutos.size(); i++) {
                                 Produtos aux = ListaProdutos.get(i);
                                 String link = "FinalizarVenda?idProduto="+aux.getId()+"&preco="+aux.getPrecoVenda();
+                                if(aux.getLiberadoVenda().equals("S")){
                         %>
                         <tr>
                             <td><%=aux.getId()%></td>
@@ -52,6 +53,7 @@
                             <td><a href="<%=link%>" class="btn btn-outline-danger float-right">Vender</a></td>
                         </tr>
                         <%
+                                }
                             }
                         %>
                     </tbody>

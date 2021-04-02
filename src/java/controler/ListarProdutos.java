@@ -33,7 +33,7 @@ public class ListarProdutos extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/index.html");
                 rd.forward(request, response);
             }
-
+            
     }
 
 }

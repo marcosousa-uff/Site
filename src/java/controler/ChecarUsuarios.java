@@ -26,6 +26,13 @@ import model.UsuariosDAO;
 @WebServlet(name = "ChecarUsuarios", urlPatterns = {"/ChecarUsuarios"})
 public class ChecarUsuarios extends HttpServlet {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,7 +59,7 @@ public class ChecarUsuarios extends HttpServlet {
                     RequestDispatcher rd = request.getRequestDispatcher("AreaRestrita");
                     rd.forward(request, response);
                 }else{
-                    RequestDispatcher rd = request.getRequestDispatcher("/index.html");
+                    RequestDispatcher rd = request.getRequestDispatcher("/login.html");
                     rd.forward(request, response);
                 }
             } else {

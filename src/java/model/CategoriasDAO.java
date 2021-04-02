@@ -5,8 +5,8 @@
  */
 package model;
 
+import aplicacao.Categoria;
 import aplicacao.Produtos;
-import aplicacao.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -24,13 +24,13 @@ import static sun.misc.FloatingDecimal.parseFloat;
 
 /**
  *
- * @author marco
+ * @author cliente
  */
-@WebServlet(name = "UsuariosDAO", urlPatterns = {"/UsuariosDAO"})
-public class UsuariosDAO extends HttpServlet {
+@WebServlet(name = "CategoriasDAO", urlPatterns = {"/CategoriasDAO"})
+public class CategoriasDAO extends HttpServlet {
 
-  private Connection conexao;
-    public UsuariosDAO() {
+    private Connection conexao;
+    public CategoriasDAO() {
         try {
             // Cria a conexão com o banco de dados
             conexao = Conexao.criaConexao();
@@ -40,27 +40,27 @@ public class UsuariosDAO extends HttpServlet {
             System.out.println(e);
         }
     }
-    public ArrayList<Usuarios> getLista() {
+    public ArrayList<Categoria> getLista() {
         //Cria o objeto resultado que irá armazenar os registros retornados do BD
-        ArrayList<Usuarios> resultado = new ArrayList<>();
+        ArrayList<Categoria> resultado = new ArrayList<>();
         try {            
             // Cria o objeto para quer será utilizado para enviar comandos SQL
             // para o BD
             Statement stmt = conexao.createStatement();
             // Armazena o resultado do comando enviado para o banco de dados
-            ResultSet rs = stmt.executeQuery("select * from usuarios");
+            ResultSet rs = stmt.executeQuery("select * from categorias");
             // rs.next() Aponta para o próximo registro do BD, se houver um 
             while( rs.next() ) {
 
-                Usuarios usuario = new Usuarios();
+                Categoria categoria = new Categoria();
                 
-                usuario.setId(rs.getInt("id") );
-                usuario.setNome( rs.getString("nome") );
-                usuario.setCpf(rs.getString("cpf"));
-                usuario.setSenha(rs.getString("senha"));
-                usuario.setTipo(rs.getString("tipo"));
-         
-                resultado.add(usuario);
+                categoria.setId(rs.getInt("id") );
+                categoria.setNome( rs.getString("nome_categoria") );
+                
+                
+                
+                
+                resultado.add(categoria);
             }
         } catch( SQLException e ) {
             System.out.println("Erro de SQL: " + e.getMessage());
@@ -69,26 +69,33 @@ public class UsuariosDAO extends HttpServlet {
         // Retorna a lista de Contatos encontrados no banco de dados.
         return resultado;
     }
-    public Usuarios getUsuarioPorID( int codigo ) {
-        Usuarios usuario = new Usuarios();
+    public boolean gravar(Categoria categoria) {
         try {
-            String sql = "SELECT * FROM usuarios WHERE id =?";
-            PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setInt(1, codigo);
-            
-            ResultSet rs = ps.executeQuery();
-            
-            if ( rs.next() ) {
-                usuario.setId(rs.getInt("id") );
-                usuario.setNome( rs.getString("nome") );
-                usuario.setCpf(rs.getString("cpf"));
-                usuario.setSenha(rs.getString("senha"));
-                usuario.setTipo(rs.getString("tipo"));
+            String sql;
+            if (categoria.getId() == 0) {
+                // Realizar uma inclusão
+                sql = "INSERT INTO categorias (nome_categoria) values(?)";
+                
+                PreparedStatement ps = conexao.prepareStatement(sql);
+                ps.setString(1, categoria.getNome());
+                ps.execute();
+                
+
+            } else {
+                // Realizar uma alteração
+                sql = "UPDATE categorias SET nome_categoria=? WHERE id=?";
+                
+                PreparedStatement ps = conexao.prepareStatement(sql);
+                ps.setString(1, categoria.getNome());
+                ps.execute();
             }
-            
-        } catch( SQLException e ) {
+
+
+            return true;
+        } catch (SQLException e) {
             System.out.println("Erro de SQL: " + e.getMessage());
+            return false;
         }
-        return usuario;
     }
+
 }
