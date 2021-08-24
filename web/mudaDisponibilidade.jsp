@@ -16,9 +16,9 @@
     int id = (int) (ses.getAttribute("idFuncionario"));
     UsuariosDAO usuario = new UsuariosDAO();
     String tipo = usuario.getUsuarioPorID(id).getTipo();
+    System.out.println("tipo:"+tipo);
     
-    
-    if (!(tipo.equals("2")))response.sendRedirect("login.html"); 
+    if (!((tipo.equals("2"))||(tipo.equals("0"))))response.sendRedirect("login.html"); 
     boolean logado = true;
    
     String link = "AreaRestrita?id="+id+"&logado="+logado;
@@ -38,11 +38,8 @@
 	<!-- Conteúdo aqui -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<ul class="navbar-nav">
-			 <li class="nav-item"><a class="nav-link" href=<%=link%>>Area Restrita</a></li>
-                         <li class="nav-item active"><a class="nav-link" href="Comprar.jsp">Comprar</a></li>
-                         <li class="nav-item"><a class="nav-link" href="CadastrarCategoria.jsp">Categorias</a></li> 
-                         <li class="nav-item"><a class="nav-link" href="cadastrarFornecedor.jsp">Cadastrar Fornecedor</a></li>
-                         <li class="nav-item active"><a class="nav-link" href="mudaDisponibilidade.jsp">Produtos</a></li>
+			 <li class="nav-item"><a class="nav-link" href=<%=link%>>Voltar</a></li>
+                         <li class="nav-item active"><a class="nav-link" href="#">Disponibiliade</a></li>
 			 <li class="nav-item"><a class="nav-link" href="index.html">Sair</a></li>
 		</ul>
 	</nav>

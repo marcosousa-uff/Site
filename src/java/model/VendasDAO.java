@@ -78,7 +78,7 @@ public class VendasDAO extends HttpServlet {
         try {
             String sql;
             if (venda.getId() == 0) {
-                System.out.println("entrou 1");
+                System.out.println("tentou gravar");
                 // Realizar uma inclusão
                 sql = "INSERT INTO vendas (quantidade_venda,data_venda,valor_venda,id_cliente,id_produto,id_vendedor) values(?,?,?,?,?,?)";
                 PreparedStatement ps = conexao.prepareStatement(sql);
@@ -90,7 +90,7 @@ public class VendasDAO extends HttpServlet {
                 ps.setInt(6, venda.getIdVendedor());
                 ps.execute();
             } else {
-                System.out.println("entrou 2");
+                System.out.println("tentou editar");
                 // Realizar uma alteração
                 sql = "UPDATE vendas SET quantidade_venda=?, data_venda=?,valor_venda=? WHERE id=?";
 

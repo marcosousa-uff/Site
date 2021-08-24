@@ -34,10 +34,8 @@
 	<!-- Conteúdo aqui -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<ul class="navbar-nav">
-			 <li class="nav-item"><a class="nav-link" href=<%=link%>>Area Restrita</a></li>
-			 <li class="nav-item active"><a class="nav-link" href="vendas.jsp">Vendas</a></li>
-                         <li class="nav-item"><a class="nav-link" href="cadastrar.jsp">Cadastrar</a></li>
-                         <li class="nav-item"><a class="nav-link" href="iniciarVenda.jsp">Vender</a></li> 
+			 <li class="nav-item"><a class="nav-link" href=<%=link%>>Voltar</a></li>
+			 <li class="nav-item active"><a class="nav-link" href="#">Vendas</a></li>
 			 <li class="nav-item"><a class="nav-link" href="index.html">Sair</a></li>
 		</ul>
 	</nav>

@@ -30,11 +30,9 @@ public class VenderProduto extends HttpServlet {
             throws ServletException, IOException {
         
         int id = Integer.parseInt(request.getParameter("id"));
-        String nome = request.getParameter("nome");
-        ClienteDAO clientedao = new ClienteDAO();
-        
-        int idCliente = clientedao.getClientePorNome(nome).getId();
-        
+        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+        System.out.println("id cliente"+idCliente);
+      
         
         ProdutosDAO produtosdao = new ProdutosDAO();
             

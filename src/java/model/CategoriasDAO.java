@@ -87,13 +87,14 @@ public class CategoriasDAO extends HttpServlet {
                 
                 PreparedStatement ps = conexao.prepareStatement(sql);
                 ps.setString(1, categoria.getNome());
+                ps.setInt(2, categoria.getId());
                 ps.execute();
             }
 
 
             return true;
         } catch (SQLException e) {
-            System.out.println("Erro de SQL: " + e.getMessage());
+            System.out.println("Erro de SQL aqui: " + e.getMessage());
             return false;
         }
     }

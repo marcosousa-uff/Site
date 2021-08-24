@@ -4,6 +4,7 @@
     Author     : cliente
 --%>
 
+<%@page import="model.ClienteDAO"%>
 <%@page import="model.CategoriasDAO"%>
 <%@page import="model.UsuariosDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,7 +38,7 @@
 	<!-- Conteúdo aqui -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<ul class="navbar-nav">
-			 <li class="nav-item"><a class="nav-link" href=<%=link%>>Area Restrita</a></li>
+			 <li class="nav-item"><a class="nav-link" href=<%=link%>>Area do Vendedor</a></li>
 			 <li class="nav-item"><a class="nav-link" href="vendas.jsp">Vendas</a></li>
                          <li class="nav-item"><a class="nav-link" href="cadastrar.jsp">Cadastrar</a></li>
                          <li class="nav-item active"><a class="nav-link" href="iniciarVenda.jsp">Vender</a></li> 
@@ -48,9 +49,19 @@
                              <form method="POST" action="VenderProduto">
                                  <input type="hidden" name="id" value=<%=id%>>
                                  <div>
-                                     <label for="nome">Nome do Cliente</label>
-                                     <input class="form-control"
-                                            name="nome" placeholder="nome">
+                                     <label for="nome" class="space">Nome do Cliente</label>
+                                     <select name="idCliente">
+                                         <%
+                                             ClienteDAO clientedao = new ClienteDAO();
+                                             ArrayList<Cliente> lista = clientedao.getLista();
+                                             for (int i = 0; i < lista.size(); i++) {
+                                                 Cliente aux = lista.get(i);
+                                                 String nomeCliente= aux.getNome();
+                                                 int idCliente = aux.getId();
+                                         %>
+                                         <option value="<%=idCliente%>"><%=nomeCliente%></option>
+                                         <%}%>
+                                     </select>    
                                  </div>
                                  <div class="space">
                                      <button type="submit" class="btn btn-primary">Vender Produto</button>

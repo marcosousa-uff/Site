@@ -91,4 +91,38 @@ public class UsuariosDAO extends HttpServlet {
         }
         return usuario;
     }
+    public boolean gravar(Usuarios usuario) {
+        try {
+            String sql;
+            if (usuario.getId() == 0) {
+                // Realizar uma inclusão
+                sql = "INSERT INTO usuarios (nome, cpf, senha, tipo) values(?,?,?,?)";
+                
+                PreparedStatement ps = conexao.prepareStatement(sql);
+                ps.setString(1, usuario.getNome());
+                ps.setString(2, usuario.getCpf());
+                ps.setString(3, usuario.getSenha());
+                ps.setString(4, usuario.getTipo());
+                ps.execute();     
+
+            } else {
+                // Realizar uma alteração
+                sql = "UPDATE usuarios SET nome=?, cpf=?, senha=?, tipo=? WHERE id=?";
+                
+                PreparedStatement ps = conexao.prepareStatement(sql);
+                ps.setString(1, usuario.getNome());
+                ps.setString(2, usuario.getCpf());
+                ps.setString(3, usuario.getSenha());
+                ps.setString(4, usuario.getTipo());
+                ps.setInt(5, usuario.getId());
+                ps.execute();
+            }
+
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Erro de SQL: " + e.getMessage());
+            return false;
+        }
+    }
 }

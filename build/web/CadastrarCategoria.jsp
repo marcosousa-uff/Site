@@ -37,11 +37,8 @@
 	<!-- Conteúdo aqui -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<ul class="navbar-nav">
-			 <li class="nav-item"><a class="nav-link" href=<%=link%>>Area Restrita</a></li>
-                         <li class="nav-item"><a class="nav-link" href="Comprar.jsp">Comprar</a></li>
+			 <li class="nav-item"><a class="nav-link" href=<%=link%>>Voltar</a></li>
                          <li class="nav-item active"><a class="nav-link" href="CadastrarCategoria.jsp">Categorias</a></li> 
-                         <li class="nav-item"><a class="nav-link" href="cadastrarFornecedor.jsp">Cadastrar Fornecedor</a></li>
-                         <li class="nav-item"><a class="nav-link" href="mudaDisponibilidade.jsp">Produtos</a></li>
 			 <li class="nav-item"><a class="nav-link" href="index.html">Sair</a></li>
 		</ul>
 	</nav>
@@ -54,6 +51,8 @@
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Nome</th>
+                            <th scope="col"></th>
+                            <th scope="col" style="width:20px;"></th>
                         </tr>
                     </thead> 
                     <tbody>
@@ -67,6 +66,16 @@
                         <tr>
                             <td><%=aux.getId()%></td>
                             <td><%=aux.getNome()%></td> 
+                            <form method="POST" action="AlterarCategoria"> 
+                                <input type="hidden" name="idCategoria" value="<%=aux.getId()%>">
+                                <td class="form-group>">
+                                    <input type="text" class="form-control" 
+                                           name="nome"  placeholder="novo nome" required>
+                                </td> 
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                </td>   
+                            </form>    
                         </tr>
                         <%
                             }

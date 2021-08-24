@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.UsuariosDAO;
 
 /**
  *
@@ -34,42 +35,56 @@ public class AreaRestrita extends HttpServlet {
         boolean logado = (boolean)request.getAttribute("logado");
         int id = (int)request.getAttribute("id");
         if(!logado) response.sendRedirect("index.html");
+        UsuariosDAO usuario = new UsuariosDAO();
+        String tipo = usuario.getUsuarioPorID(id).getTipo();
 
         HttpSession ses = request.getSession();
         ses.setAttribute("idFuncionario", id);
-
         
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<meta charset=\"utf-8>");
-            out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
-            out.println("<link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">");
-            out.println("<link rel=\"stylesheet\" href=\"css/bootstrap.css\" type=\"text/css\"/>");
-            out.println("<title>Servlet AreaRestrita</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<div class=\"container\">");
-            out.println("<p></p>");
-            out.println("<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">");
-            out.println("<ul class=\"navbar-nav\">");
-            out.println("<li class=\"nav-item active\"><a class=\"nav-link\" href=\"#\">Area Restrita</a></li>");
-            out.println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"areaVendedor.jsp\">Area do Vendedor</a></li>");
-            out.println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"areaComprador.jsp\">Area do Comprador</a></li>");
-            out.println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"index.html\">sair</a></li>");
-            out.println("</ul>");
-            out.println("</nav>");
-            out.println("</div>");
-            out.println("<script src=\"jquery-3.4.1.min.js\"></script>");
-            out.println("<script src=\"js/popper.min.js\"></script>");
-            out.println("<script src=\"js/bootstrap.min.js\"></script");
-            out.println("</body>");
-            out.println("</html>");
+        switch(tipo){
+            case "1":
+                response.sendRedirect("areaVendedor.jsp");
+                break;
+            case "2":
+                response.sendRedirect("areaComprador.jsp");
+                break;
+            case "0":
+                response.sendRedirect("areaAdministrador.jsp");
+                break;                
         }
-    }
+
+//        
+//        response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<meta charset=\"utf-8>");
+//            out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
+//            out.println("<link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">");
+//            out.println("<link rel=\"stylesheet\" href=\"css/bootstrap.css\" type=\"text/css\"/>");
+//            out.println("<title>Servlet AreaRestrita</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<div class=\"container\">");
+//            out.println("<p></p>");
+//            out.println("<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">");
+//            out.println("<ul class=\"navbar-nav\">");
+//            out.println("<li class=\"nav-item active\"><a class=\"nav-link\" href=\"#\">Area Restrita</a></li>");
+//            out.println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"areaVendedor.jsp\">Area do Vendedor</a></li>");
+//            out.println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"areaComprador.jsp\">Area do Comprador</a></li>");
+//            out.println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"index.html\">sair</a></li>");
+//            out.println("</ul>");
+//            out.println("</nav>");
+//            out.println("</div>");
+//            out.println("<script src=\"jquery-3.4.1.min.js\"></script>");
+//            out.println("<script src=\"js/popper.min.js\"></script>");
+//            out.println("<script src=\"js/bootstrap.min.js\"></script");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
+      }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

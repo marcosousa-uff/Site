@@ -43,9 +43,19 @@ public class CadastrarFornecedor extends HttpServlet {
         String telefone = request.getParameter("telefone");
         String email = request.getParameter("email");
         
-        Fornecedor fornecedor = new Fornecedor(0,razao,cnpj,endereco,bairro,cidade,uf,cep,telefone,email);
-        FornecedorDAO fornecedordao = new FornecedorDAO();
-        boolean resultado = fornecedordao.gravar(fornecedor);
+        boolean resultado = false;
+        if((!razao.isEmpty()) && (!cnpj.isEmpty()) &&(!endereco.isEmpty())&& (!bairro.isEmpty()) 
+                &&(!cidade.isEmpty())&&(!uf.isEmpty()) && (!cep.isEmpty()) &&(!telefone.isEmpty()) &&(!email.isEmpty())){
+        
+            Fornecedor fornecedor = new Fornecedor(0,razao,cnpj,endereco,bairro,cidade,uf,cep,telefone,email);
+            FornecedorDAO fornecedordao = new FornecedorDAO();
+            resultado = fornecedordao.gravar(fornecedor);
+        }else{
+            response.sendRedirect("erro.jsp");
+        }    
+        
+        
+        
         
         if(resultado){
             response.sendRedirect("ListarProdutos");

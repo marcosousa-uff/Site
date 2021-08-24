@@ -37,11 +37,8 @@
 	<!-- Conteúdo aqui -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<ul class="navbar-nav">
-			 <li class="nav-item"><a class="nav-link" href=<%=link%>>Area Restrita</a></li>
-                         <li class="nav-item"><a class="nav-link" href="Comprar.jsp">Comprar</a></li>
-                         <li class="nav-item"><a class="nav-link" href="CadastrarCategoria.jsp">Categorias</a></li> 
+			 <li class="nav-item"><a class="nav-link" href=<%=link%>>voltar</a></li>
                          <li class="nav-item active"><a class="nav-link" href="cadastrarFornecedor.jsp">Cadastrar Fornecedor</a></li>
-                         <li class="nav-item"><a class="nav-link" href="mudaDisponibilidade.jsp">Produtos</a></li>
 			 <li class="nav-item"><a class="nav-link" href="index.html">Sair</a></li>
 		</ul>
 	</nav>

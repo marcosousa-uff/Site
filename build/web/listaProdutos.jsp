@@ -3,9 +3,11 @@
     Created on : 14/03/2021, 02:49:43
     Author     : marco
 --%>
+<%@page import="model.UsuariosDAO"%>
 <%@ page import="java.util.*,aplicacao.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
     <head>
     <!-- Meta tags Obrigatórias -->
@@ -22,9 +24,8 @@
 	<!-- Conteúdo aqui -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<ul class="navbar-nav">
-			 <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-			 <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-			 <li class="nav-item active"><a class="nav-link" href="ListarProdutos">Produtos</a></li>
+			 <li class="nav-item active"><a class="nav-link" href="#">Produtos</a></li>
+                         <li class="nav-item"><a class="nav-link" href="index.html">Sair</a></li>
 		</ul>
 	</nav>
 	</div>

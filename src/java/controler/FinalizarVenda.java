@@ -54,16 +54,16 @@ public class FinalizarVenda extends HttpServlet {
             
             Vendas venda = new Vendas(id,qtd,dataSql,preco,idCliente,idProduto,idFuncionario);
             VendasDAO vendasdao = new VendasDAO();
+            System.out.println("idCliente:"+idCliente);
             
-            boolean vendaConcluida = vendasdao.gravar(venda);
-            System.out.println("venda "+vendaConcluida);
+            //boolean vendaConcluida = vendasdao.gravar(venda);
             
             ProdutosDAO produtosdao = new ProdutosDAO();
             
             System.out.println("id do produto:"+idProduto);
             Produtos produto = produtosdao.getProdutosPorID(idProduto);
             
-            if(vendaConcluida){      
+            if(vendasdao.gravar(venda)){//grava nova venda e verifica se a gravação funcionou      
                 int qtdProduto =  produto.getQtdDisponivel();
                 qtdProduto--;
                 if(qtdProduto>0){
@@ -81,7 +81,7 @@ public class FinalizarVenda extends HttpServlet {
                 rd.forward(request, response);
             }else{
 
-                RequestDispatcher rd = request.getRequestDispatcher("/index.html");
+                RequestDispatcher rd = request.getRequestDispatcher("erro.jsp");
                 rd.forward(request, response);
             }
             
